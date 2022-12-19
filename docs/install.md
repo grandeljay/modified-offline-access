@@ -11,8 +11,9 @@ In order for this module to work, place the following code into `/inc/xtc_get_sh
  * @author  Jay Trees <offline-access@grandels.email>
  * @package GrandelJayOfflineAccess
  */
-return grandeljay_offline_access::isOfflineAccessAllowed();
-/** */
+if (defined(MODULE_GRANDELJAY_OFFLINE_ACCESS_STATUS) && 'true' === MODULE_GRANDELJAY_OFFLINE_ACCESS_STATUS) {
+    return grandeljay_offline_access::isOfflineAccessAllowed();
+}
 ```
 
 **Warning**: this is a core file of modified. It will likely be overwritten when you update. Please make sure to add it again after a modified core update.
