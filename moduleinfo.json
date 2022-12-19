@@ -1,0 +1,21 @@
+{
+    "archiveName": "grandeljay/offline-access",
+    "description": "Allow specific users to bypass the shop-offline screen.",
+    "developer": "grandeljay",
+    "name": "Offline Access",
+    "shortDescription": "Allow specific users to bypass the shop-offline screen.",
+    "developerWebsite": "https://github.com/grandeljay",
+    "website": "https://github.com/grandeljay",
+    "sourceDir": "src",
+    "version": "auto",
+    "category": "nocategory",
+    "tags": "shop, offline",
+    "price": "free",
+    "modifiedCompatibility": [
+        "2.0.7.2"
+    ],
+    "require": {
+        "composer/autoload": "^1.0.0",
+        "robinthehood/modified-std-module": "^0.6.0"
+    }
+}
