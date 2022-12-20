@@ -9,6 +9,10 @@
  * @package GrandelJayOfflineAccess
  */
 
-require DIR_ADMIN . '/includes/modules/system/grandeljay_offline_access.php';
+if (!defined('MODULE_GRANDELJAY_OFFLINE_ACCESS_STATUS') || 'true' !== MODULE_GRANDELJAY_OFFLINE_ACCESS_STATUS) {
+    return;
+}
+
+require_once DIR_ADMIN . '/includes/modules/system/grandeljay_offline_access.php';
 
 grandeljay_offline_access::setCookieOfflineAccess();

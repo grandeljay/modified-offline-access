@@ -70,11 +70,7 @@ class grandeljay_offline_access extends StdModule
 
     public function __construct()
     {
-        if (function_exists('parent::__construct')) {
-            parent::__construct();
-        } else {
-            $this->init('MODULE_GRANDELJAY_OFFLINE_ACCESS');
-        }
+        $this->init('MODULE_GRANDELJAY_OFFLINE_ACCESS');
 
         $this->addAction('SetCookieOfflineAccess', MODULE_GRANDELJAY_OFFLINE_ACCESS_ALLOW_DEVICE_OFFLINE_ACCESS);
     }
