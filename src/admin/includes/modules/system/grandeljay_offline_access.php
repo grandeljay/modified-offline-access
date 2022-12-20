@@ -15,7 +15,7 @@ require_once DIR_FS_DOCUMENT_ROOT . '/vendor-no-composer/autoload.php';
 
 class grandeljay_offline_access extends StdModule
 {
-    public const VERSION = '0.1.0';
+    public const VERSION = '0.1.1';
 
     public static function getModuleMeta(): array
     {
