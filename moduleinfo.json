@@ -5,7 +5,7 @@
     "name": "Offline Access",
     "shortDescription": "Allow specific users to bypass the shop-offline screen.",
     "developerWebsite": "https://github.com/grandeljay",
-    "website": "https://github.com/grandeljay",
+    "website": "https://github.com/grandeljay/modified-offline-access",
     "sourceDir": "src",
     "version": "auto",
     "category": "nocategory",
