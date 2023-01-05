@@ -6,7 +6,7 @@
  * @author Jay Trees <j.trees@hybridsupply.de>
  */
 
-define('MODULE_GRANDELJAY_OFFLINE_ACCESS_TITLE', 'Offline Zugriff');
+define('MODULE_GRANDELJAY_OFFLINE_ACCESS_TITLE', 'grandeljay - Offline Zugriff');
 define('MODULE_GRANDELJAY_OFFLINE_ACCESS_LONG_DESCRIPTION', 'Ermöglicht bestimmten Benutzern den Shop im offline modus zu besuchen.');
 define('MODULE_GRANDELJAY_OFFLINE_ACCESS_STATUS_TITLE', 'Modul aktivieren?');
 define('MODULE_GRANDELJAY_OFFLINE_ACCESS_STATUS_DESC', 'Soll der Zugriff im offline modus gewährt werden?');
