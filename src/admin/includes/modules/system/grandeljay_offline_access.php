@@ -47,7 +47,7 @@ class grandeljay_offline_access extends StdModule
 
         $cookie_path = '/';
 
-        if (isset($_GET['moduleaction'])) {
+        if (isset($_GET['moduleaction']) && in_array($_GET['moduleaction'], array(self::INVOKE_ACTION_SET_COOKIE, self::INVOKE_ACTION_UNSET_COOKIE), true)) {
             switch ($_GET['moduleaction']) {
                 case self::INVOKE_ACTION_SET_COOKIE:
                     $cookie_value   = true;
@@ -141,7 +141,11 @@ class grandeljay_offline_access extends StdModule
         //     return self::UPDATE_SUCCESS;
         // }
 
-        $this->setVersion(self::VERSION);
+        if (-1 === version_compare($this->getVersion(), self::VERSION)) {
+            $this->setVersion(self::VERSION);
+
+            return self::UPDATE_SUCCESS;
+        }
 
         return self::UPDATE_NOTHING;
     }
