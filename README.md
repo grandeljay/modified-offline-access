@@ -4,7 +4,7 @@ A modified-shop module which allows specific users to bypass the shop-offline sc
 
 ## Installation
 
-In order for this module to work, place the following code into `/inc/xtc_get_shop_conf.inc.php`. The code needs to be at the end of the function `get_shop_offline_status`, right **before** `return true;` which is around line `71`;
+In order for this module to work, place the following code into `/inc/xtc_get_shop_conf.inc.php`. The code needs to be at the end of the function `get_shop_offline_status`, right **before** `return true;` which is around line `71`.
 
 ```php
 /**
