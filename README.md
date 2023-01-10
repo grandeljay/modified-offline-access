@@ -16,6 +16,8 @@ In order for this module to work, place the following code into `/inc/xtc_get_sh
  * @package GrandelJayOfflineAccess
  */
 if (defined('MODULE_GRANDELJAY_OFFLINE_ACCESS_STATUS') && 'true' === MODULE_GRANDELJAY_OFFLINE_ACCESS_STATUS) {
+    require_once DIR_ADMIN . 'includes/modules/system/grandeljay_offline_access.php';
+
     return grandeljay_offline_access::isOfflineAccessAllowed();
 }
 /** */

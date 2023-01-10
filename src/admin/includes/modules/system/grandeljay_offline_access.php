@@ -3,9 +3,8 @@
 /**
  * Offline Access
  *
- * Allow specific users to bypass the shop-offline screen.
- *
  * @author  Jay Trees <offline-access@grandels.email>
+ * @link    https://github.com/grandeljay/modified-offline-access
  * @package GrandelJayOfflineAccess
  */
 
@@ -15,7 +14,9 @@ require_once DIR_FS_DOCUMENT_ROOT . '/vendor-no-composer/autoload.php';
 
 class grandeljay_offline_access extends StdModule
 {
-    public const VERSION = '0.1.2';
+    public const VERSION                     = '0.2.2';
+    private const INVOKE_ACTION_SET_COOKIE   = 'SetCookieOfflineAccess';
+    private const INVOKE_ACTION_UNSET_COOKIE = 'UnsetCookieOfflineAccess';
 
     public static function getModuleMeta(): array
     {
@@ -29,29 +30,61 @@ class grandeljay_offline_access extends StdModule
         return $module_meta;
     }
 
+    /**
+     * Set the actual cookie
+     */
     public static function setCookieOfflineAccess()
     {
         $module_meta      = self::getModuleMeta();
         $module_name      = $module_meta['name'];
         $module_namespace = $module_meta['namespace'];
-        $cookie_name      = $module_namespace . '_' . $module_name;
 
-        if (isset($_SESSION[$module_namespace][$module_name][$cookie_name])) {
-            $cookie_value   = true;
-            $cookie_expires = time() + 3600 * 24 * 30;
-            $cookie_path    = '/';
+        $cookie_name = $module_namespace . '_' . $module_name;
 
-            $set_cookie = setcookie(
-                $cookie_name,
-                $cookie_value,
-                $cookie_expires,
-                $cookie_path,
-            );
+        if (!(isset($_GET['module']) && self::class === $_GET['module'])) {
+            return;
+        }
 
-            if ($set_cookie) {
-                unset($_SESSION[$module_namespace][$module_name][$cookie_name]);
+        $cookie_path = '/';
+
+        if (isset($_GET['moduleaction'])) {
+            switch ($_GET['moduleaction']) {
+                case self::INVOKE_ACTION_SET_COOKIE:
+                    $cookie_value   = true;
+                    $cookie_expires = time() + 3600 * 24 * 30;
+                    break;
+
+                case self::INVOKE_ACTION_UNSET_COOKIE:
+                    $cookie_value   = false;
+                    $cookie_expires = -1;
+                    break;
+            }
+
+            $set_cookie = setcookie($cookie_name, $cookie_value, $cookie_expires, $cookie_path);
+
+            $_GET[$_GET['moduleaction']] = $set_cookie;
+            unset($_GET['moduleaction']);
+            xtc_redirect(xtc_href_link('module_export.php', http_build_query($_GET), 'SSL'));
+        }
+
+        /**
+         * Message
+         */
+        global $messageStack;
+
+        if (isset($_GET[self::INVOKE_ACTION_SET_COOKIE])) {
+            if (boolval($_GET[self::INVOKE_ACTION_SET_COOKIE])) {
+                $messageStack->add(MODULE_GRANDELJAY_OFFLINE_ACCESS_OFFLINE_ACCESS_ENABLED_SUCCESS, 'success');
             } else {
-                throw new Exception('Failed to set cookie');
+                $messageStack->add(MODULE_GRANDELJAY_OFFLINE_ACCESS_OFFLINE_ACCESS_ENABLED_FAILURE, 'warning');
+            }
+        }
+
+        if (isset($_GET[self::INVOKE_ACTION_UNSET_COOKIE])) {
+            if (boolval($_GET[self::INVOKE_ACTION_UNSET_COOKIE])) {
+                $messageStack->add(MODULE_GRANDELJAY_OFFLINE_ACCESS_OFFLINE_ACCESS_DISABLED_SUCCESS, 'success');
+            } else {
+                $messageStack->add(MODULE_GRANDELJAY_OFFLINE_ACCESS_OFFLINE_ACCESS_DISABLED_FAILURE, 'warning');
             }
         }
     }
@@ -71,8 +104,23 @@ class grandeljay_offline_access extends StdModule
     public function __construct()
     {
         $this->init('MODULE_GRANDELJAY_OFFLINE_ACCESS');
+        $this->checkForUpdate(true);
 
-        $this->addAction('SetCookieOfflineAccess', MODULE_GRANDELJAY_OFFLINE_ACCESS_ALLOW_DEVICE_OFFLINE_ACCESS);
+        if (self::isOfflineAccessAllowed()) {
+            if (defined('MODULE_GRANDELJAY_OFFLINE_ACCESS_ALLOW_DEVICE_OFFLINE_ACCESS')) {
+                $this->addAction(
+                    self::INVOKE_ACTION_SET_COOKIE,
+                    MODULE_GRANDELJAY_OFFLINE_ACCESS_ALLOW_DEVICE_OFFLINE_ACCESS
+                );
+            }
+        } else {
+            if (defined('MODULE_GRANDELJAY_OFFLINE_ACCESS_DISALLOW_DEVICE_OFFLINE_ACCESS')) {
+                $this->addAction(
+                    self::INVOKE_ACTION_UNSET_COOKIE,
+                    MODULE_GRANDELJAY_OFFLINE_ACCESS_DISALLOW_DEVICE_OFFLINE_ACCESS
+                );
+            }
+        }
     }
 
     public function display()
@@ -85,28 +133,21 @@ class grandeljay_offline_access extends StdModule
         parent::install();
     }
 
+    protected function updateSteps()
+    {
+        // $currentVersion = $this->getVersion();
+        //
+        // if ($currentVersion) {
+        //     return self::UPDATE_SUCCESS;
+        // }
+
+        $this->setVersion(self::VERSION);
+
+        return self::UPDATE_NOTHING;
+    }
+
     public function remove()
     {
         parent::remove();
-    }
-
-    protected function invokeSetCookieOfflineAccess()
-    {
-        $module_meta      = self::getModuleMeta();
-        $module_name      = $module_meta['name'];
-        $module_namespace = $module_meta['namespace'];
-        $cookie_name      = $module_namespace . '_' . $module_name;
-
-        /**
-         * Set a marker, so the cookie can be set earlier on the next page load.
-         *
-         * If output exists prior to calling this function, setcookie() will
-         * fail and return false.
-         *
-         * @see https://www.php.net/manual/en/function.setcookie.php
-         */
-        if (!isset($_COOKIE[$cookie_name])) {
-            $_SESSION[$module_namespace][$module_name][$cookie_name] = true;
-        }
     }
 }

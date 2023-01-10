@@ -3,17 +3,12 @@
 /**
  * Offline Access
  *
- * Allow specific users to bypass the shop-offline screen.
- *
  * @author  Jay Trees <offline-access@grandels.email>
+ * @link    https://github.com/grandeljay/modified-offline-access
  * @package GrandelJayOfflineAccess
  */
 
 if (!defined('MODULE_GRANDELJAY_OFFLINE_ACCESS_STATUS') || 'true' !== MODULE_GRANDELJAY_OFFLINE_ACCESS_STATUS) {
-    return;
-}
-
-if (FILENAME_MODULE_EXPORT === basename($_SERVER['PHP_SELF'])) {
     return;
 }
 

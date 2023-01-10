@@ -3,15 +3,31 @@
 /**
  * Offline Access
  *
- * @author Jay Trees <j.trees@hybridsupply.de>
+ * @author  Jay Trees <offline-access@grandels.email>
+ * @link    https://github.com/grandeljay/modified-offline-access
+ * @package GrandelJayOfflineAccess
  */
 
-define('MODULE_GRANDELJAY_OFFLINE_ACCESS_TITLE', 'grandeljay - Offline Zugriff');
-define('MODULE_GRANDELJAY_OFFLINE_ACCESS_LONG_DESCRIPTION', 'Ermöglicht bestimmten Benutzern den Shop im offline modus zu besuchen.');
-define('MODULE_GRANDELJAY_OFFLINE_ACCESS_STATUS_TITLE', 'Modul aktivieren?');
-define('MODULE_GRANDELJAY_OFFLINE_ACCESS_STATUS_DESC', 'Soll der Zugriff im offline modus gewährt werden?');
+$translations = array(
+    /** Module */
+    'TITLE'                           => 'grandeljay - Offline-Zugriff',
+    'LONG_DESCRIPTION'                => 'Ermöglicht es bestimmten Benutzern, den Shop-Offline-Bildschirm zu umgehen.',
+    'STATUS_TITLE'                    => 'Modul aktivieren?',
+    'STATUS_DESC'                     => '',
 
-/**
- * Settings
- */
-define('MODULE_GRANDELJAY_OFFLINE_ACCESS_ALLOW_DEVICE_OFFLINE_ACCESS', 'Offline Zugriff aktivieren');
+    /** Settings */
+    'ALLOW_DEVICE_OFFLINE_ACCESS'     => 'Offline-Zugriff aktivieren',
+    'DISALLOW_DEVICE_OFFLINE_ACCESS'  => 'Offline-Zugriff deaktivieren',
+
+    /** Messages */
+    'OFFLINE_ACCESS_ENABLED_SUCCESS'  => 'Der Offline-Zugriff wurde erfolgreich aktiviert.',
+    'OFFLINE_ACCESS_ENABLED_FAILURE'  => 'Der Offline-Zugriff konnte nicht aktiviert werden.',
+    'OFFLINE_ACCESS_DISABLED_SUCCESS' => 'Der Offline-Zugriff wurde erfolgreich deaktiviert.',
+    'OFFLINE_ACCESS_DISABLED_FAILURE' => 'Der Offline-Zugriff konnte nicht deaktiviert werden.',
+);
+
+foreach ($translations as $key => $value) {
+    $constant = 'MODULE_' . strtoupper(pathinfo(__FILE__, PATHINFO_FILENAME)) . '_' . $key;
+
+    define($constant, $value);
+}
