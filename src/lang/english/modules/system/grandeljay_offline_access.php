@@ -11,7 +11,7 @@
 $translations = array(
     /** Module */
     'TITLE'                           => 'grandeljay - Offline Access',
-    'LONG_DESCRIPTION'                => 'Allow specific users to bypass the shop-offline screen.',
+    'LONG_DESCRIPTION'                => 'Allow specific devices to bypass the shop-offline screen without having to log in.',
     'STATUS_TITLE'                    => 'Activate module?',
     'STATUS_DESC'                     => '',
 

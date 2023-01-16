@@ -6,7 +6,7 @@ In order for this module to work, place the following code into `/inc/xtc_get_sh
 /**
  * Offline Access
  *
- * Allow specific users to bypass the shop-offline screen.
+ * Allow specific devices to bypass the shop-offline screen without having to log in.
  *
  * @author  Jay Trees <offline-access@grandels.email>
  * @package GrandelJayOfflineAccess

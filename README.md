@@ -1,6 +1,6 @@
 # Offline Access
 
-A modified-shop module which allows specific users to bypass the shop-offline screen.
+A modified-shop module which allows specific devices to bypass the shop-offline screen without having to log in. Useful for testing how your shop looks to (logged out) visitors while it is still in development.
 
 ## Installation
 
@@ -10,9 +10,8 @@ In order for this module to work, place the following code into `/inc/xtc_get_sh
 /**
  * Offline Access
  *
- * Allow specific users to bypass the shop-offline screen.
- *
  * @author  Jay Trees <offline-access@grandels.email>
+ * @link    https://github.com/grandeljay/modified-offline-access
  * @package GrandelJayOfflineAccess
  */
 if (defined('MODULE_GRANDELJAY_OFFLINE_ACCESS_STATUS') && 'true' === MODULE_GRANDELJAY_OFFLINE_ACCESS_STATUS) {

@@ -1,9 +1,9 @@
 {
     "archiveName": "grandeljay/offline-access",
-    "description": "Allow specific users to bypass the shop-offline screen.",
+    "description": "Allow specific devices to bypass the shop-offline screen without having to log in. Useful for testing how your shop looks to (logged out) visitors while it is still in development.",
     "developer": "grandeljay",
     "name": "Offline Access",
-    "shortDescription": "Allow specific users to bypass the shop-offline screen.",
+    "shortDescription": "Allow specific devices to bypass the shop-offline screen without having to log in.",
     "developerWebsite": "https://github.com/grandeljay",
     "website": "https://github.com/grandeljay/modified-offline-access",
     "sourceDir": "src",
