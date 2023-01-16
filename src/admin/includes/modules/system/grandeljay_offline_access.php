@@ -72,6 +72,8 @@ class grandeljay_offline_access extends StdModule
          */
         global $messageStack;
 
+        require_once DIR_FS_LANGUAGES . $_SESSION['language'] . '/modules/system/grandeljay_offline_access.php';
+
         if (isset($_GET[self::INVOKE_ACTION_SET_COOKIE])) {
             if (boolval($_GET[self::INVOKE_ACTION_SET_COOKIE])) {
                 $messageStack->add(MODULE_GRANDELJAY_OFFLINE_ACCESS_OFFLINE_ACCESS_ENABLED_SUCCESS, 'success');
