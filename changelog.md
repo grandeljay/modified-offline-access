@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.3 - 2023-01-16
+
+### Fixed
+
+- Fatal error when enabling offline access
+
 ## 0.2.2 - 2023-01-10
 
 ### Added

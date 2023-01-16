@@ -14,7 +14,7 @@ require_once DIR_FS_DOCUMENT_ROOT . '/vendor-no-composer/autoload.php';
 
 class grandeljay_offline_access extends StdModule
 {
-    public const VERSION                     = '0.2.2';
+    public const VERSION                     = '0.2.3';
     private const INVOKE_ACTION_SET_COOKIE   = 'SetCookieOfflineAccess';
     private const INVOKE_ACTION_UNSET_COOKIE = 'UnsetCookieOfflineAccess';
 
