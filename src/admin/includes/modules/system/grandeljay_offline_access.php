@@ -6,6 +6,9 @@
  * @author  Jay Trees <offline-access@grandels.email>
  * @link    https://github.com/grandeljay/modified-offline-access
  * @package GrandelJayOfflineAccess
+ *
+ * @phpcs:disable PSR1.Classes.ClassDeclaration.MissingNamespace
+ * @phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
  */
 
 use RobinTheHood\ModifiedStdModule\Classes\StdModule;
