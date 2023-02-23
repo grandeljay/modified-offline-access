@@ -106,7 +106,8 @@ class grandeljay_offline_access extends StdModule
 
     public function __construct()
     {
-        $this->init('MODULE_GRANDELJAY_OFFLINE_ACCESS');
+        parent::__construct();
+
         $this->checkForUpdate(true);
 
         if (self::isOfflineAccessAllowed()) {
