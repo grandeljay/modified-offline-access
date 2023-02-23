@@ -15,7 +15,7 @@ use RobinTheHood\ModifiedStdModule\Classes\StdModule;
 
 class grandeljay_offline_access extends StdModule
 {
-    public const VERSION                     = '0.2.3';
+    public const VERSION                     = '0.2.4';
     private const INVOKE_ACTION_SET_COOKIE   = 'SetCookieOfflineAccess';
     private const INVOKE_ACTION_UNSET_COOKIE = 'UnsetCookieOfflineAccess';
 
